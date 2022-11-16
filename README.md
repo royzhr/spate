@@ -18,3 +18,6 @@ English : [How to wirte Spate config file](/doc/eng/use_config.md)
 
 English : [TODO]
 
+## 注意事项
+需要安装 libpcap-dev, ubuntu 下可以用 `apt install libpcap-dev`
+

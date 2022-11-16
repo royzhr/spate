@@ -25,10 +25,13 @@ const char *__early_get_build_mode(char *buf, uint16_t buf_len)
 
 const char *early_get_version(char *buf)
 {
-    char            str_build[128];
+    char            str_build[256];
+    char            tmp[128];
 
-    sprintf(buf, "%s %s", c_spate_version, 
-            __early_get_build_mode(str_build, sizeof(str_build)));
+    snprintf(buf, sizeof(str_build)-1, "%s %s", c_spate_version, 
+            __early_get_build_mode(tmp, sizeof(tmp)));
+
+    str_build[sizeof(str_build)-1] = 0;
 
     return buf;
 }

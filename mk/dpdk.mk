@@ -16,7 +16,6 @@ DPDK_CFLAGS = $(shell $(PKGCONF) --cflags libdpdk)
 # Added for 'rte_eth_link_to_str()'
 DPDK_CFLAGS += -DALLOW_EXPERIMENTAL_API
 
-
-DPDK_DEP_LIBS = $(shell $(PKGCONF) --static --libs libdpdk)
-
+# DPDK_DEP_LIBS = $(shell $(PKGCONF) --static --libs libdpdk)
+DPDK_DEP_LIBS = $(shell $(PKGCONF) --libs libdpdk) 
 

@@ -3,7 +3,7 @@
  *
  */
 
-#include "../plane_linux_extend_module.h"
+#include "ebpf_offload_module.h"
 #include "ebpf_offload_mgr.h"
 #include "ebpf_offload_cfg_ops.h"
 
@@ -38,7 +38,7 @@ static void _ebpf_offload_module_exit(void)
     ebpf_offload_mgr_exit();
 }
 
-const __spate_linux_extend_module__ module_class_t c_ebpf_offload_module = {
+const module_class_t c_ebpf_offload_module = {
     .module_name    = "ebpf_offload",
     .cfg_ops        = &c_ebpf_offload_cfg_ops,
     .module_init    = _ebpf_offload_module_init,

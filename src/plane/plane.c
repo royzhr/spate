@@ -5,9 +5,6 @@
 
 #include "plane.h"
 #include "plane_register.h"
-#include "plane_lds.h"
-
-
 
 
 plane_t *g_plane = NULL;
@@ -16,10 +13,11 @@ plane_t *g_plane = NULL;
 int  plane_singleton_add(const char *plane_name)
 {
     const plane_register_t      *reg;
+    int                         i;
 
     ASSERT(g_plane == NULL);
 
-    for (reg=__spate_plane_register_start; reg<__spate_plane_register_end; reg++) {
+    for (i=0, reg=c_plane_register[i]; reg!=NULL; ++i,reg=c_plane_register[i]) {
         if (!strcmp(plane_name, reg->name)) {
             g_plane = reg->plane_create();
             LOGW("plane create: %s", plane_name);

@@ -8,6 +8,7 @@
 
 
 #include "../plane.h"
+#include "../plane_register.h"
 #include "../plane_utils.h"
 #include "percpu/dpdk_percpu_export.h"
 #include "netdev/dpdk_netdev_export.h"
@@ -22,6 +23,7 @@ typedef struct {
 
 } plane_dpdk_t;
 
+extern const  plane_register_t c_plane_dpdk;
 
 
 #endif /* __PLANE_DPDK_H__ */

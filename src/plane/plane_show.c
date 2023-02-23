@@ -4,36 +4,27 @@
  */
 
 #include "plane_show.h"
-#include "plane_lds.h"
-#include "linux/plane_linux_extend_lds.h"
 #include <spate_print.h>
 
 
 static int _is_plane_support_dpdk(void) 
 {
-    const plane_register_t      *reg;
-
-    for (reg=__spate_plane_register_start; reg<__spate_plane_register_end; reg++) {
-        if (!strcmp("dpdk", reg->name)) {
-            return 1;
-        }
-    }
-
+#ifdef DPDK_ENABLE
+    return 1;
+#else
     return 0;
+#endif
 }
 
 
 static int _is_plane_support_ebpf_offload(void)
 {
-    const module_class_t    *mod;
 
-    for (mod=__spate_linux_extend_module_start; mod<__spate_linux_extend_module_end; mod++) {
-        if (!strcmp("ebpf_offload", mod->module_name)) {
-            return 1;
-        }
-    }
-
+#ifdef EBPF_ENABLE
+    return 1;
+#else
     return 0;
+#endif
 }
 
 #define MAX_SHOW_LEN    128

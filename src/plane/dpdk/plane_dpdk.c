@@ -27,7 +27,7 @@ static plane_t *_plane_dpdk_create(void)
 }
 
 
-const __spate_plane_register__ plane_register_t _c_plane_dpdk = {
+const  plane_register_t c_plane_dpdk = {
     .name         = "dpdk",
     .plane_create = _plane_dpdk_create,
 };

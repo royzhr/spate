@@ -24,16 +24,17 @@ DEBUG_C_FLAGS = -DSPATE_DEBUG -g -O0
 RELEASE_C_FLAGS = -g -O3
 
 CFLAGS = -Wall -Werror -rdynamic $(D_INC)
-LIBS = -lpthread -lm -lpcap -rdynamic lib/lib/liblua.a
+LIBS = -lpthread -lm -lpcap -rdynamic 
 
 ifeq ($(dpdk_enable), 1)
 	SRC_DIR += $(DPDK_SRC_DIR)
-	CFLAGS  += $(DPDK_CFLAGS)
+	CFLAGS  += $(DPDK_CFLAGS) -DDPDK_ENABLE
 	LIBS    += $(DPDK_DEP_LIBS)
 endif
 
 ifeq ($(ebpf_enable), 1)
 	SRC_DIR += $(EBPF_SRC_DIR)
+	CFLAGS += -DEBPF_ENABLE
 	LIBS    += $(EBPF_DEP_LIBS)
 endif
 
@@ -45,7 +46,7 @@ OBJECT = $(addprefix build/, $(patsubst %.c, %.o, $(SRC_C)))
 
 
 $(TARGET):$(OBJECT)
-	gcc -g -rdynamic -o $@ $^ $(LIBS) -Wl,-Tmk/spate.lds
+	gcc -g -rdynamic -o $@ $^ $(LIBS) 
 
 $(OBJECT):$(SRC_C)
 	gcc -c $(CFLAGS) $(patsubst %.o, %.c, $(subst build/, , $@)) -o $@

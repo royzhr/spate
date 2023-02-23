@@ -11,6 +11,9 @@
 #include "instance/linux_instance_module.h"
 #include "filter/linux_filter_module.h"
 
+#ifdef EBPF_ENABLE
+#include "ebpf/ebpf_offload_module.h"
+#endif
 
 
 /*
@@ -26,6 +29,9 @@ const module_class_t *c_linux_sub_modules[ ] = {
     &c_linux_filter_module,
     &c_linux_netdev_module,
     &c_linux_instance_module,
+#ifdef EBPF_ENABLE
+    &c_ebpf_offload_module,
+#endif
     NULL,
 };
 

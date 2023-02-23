@@ -19,7 +19,7 @@ typedef struct {
 } plane_register_t;
 
 
-#define __spate_plane_register__    __attribute__((unused, section("spate_plane_register")))
+extern const plane_register_t *c_plane_register[];
 
 
 

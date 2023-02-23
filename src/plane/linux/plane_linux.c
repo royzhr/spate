@@ -26,7 +26,7 @@ static plane_t *_plane_linux_create(void)
     return &lix->base;
 }
 
-const __spate_plane_register__ plane_register_t _c_plane_linux = {
+const plane_register_t c_plane_linux = {
     .name         = "linux",
     .plane_create = _plane_linux_create,
 };

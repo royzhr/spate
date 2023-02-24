@@ -7,7 +7,6 @@
 #include "../linux_instance_utils.h"
 
 
-
 static inline uint16_t __linux_client_instance_process_pkts(client_instance_context_t *ctx,
         char **pkts, uint16_t *lens, uint16_t rx_nr, uint64_t now)
 {

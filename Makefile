@@ -27,6 +27,9 @@ CFLAGS = -Wall -Werror -rdynamic $(D_INC)
 LIBS = -lpthread -lm -lpcap -rdynamic 
 
 ifeq ($(dpdk_enable), 1)
+
+	VERSION:=$(shell pkg-config --modversion libdpdk)
+
 	SRC_DIR += $(DPDK_SRC_DIR)
 	CFLAGS  += $(DPDK_CFLAGS) -DDPDK_ENABLE
 	LIBS    += $(DPDK_DEP_LIBS)
@@ -38,6 +41,9 @@ ifeq ($(ebpf_enable), 1)
 	LIBS    += $(EBPF_DEP_LIBS)
 endif
 
+ifeq ($(usdt_enable), 1)
+	CFLAGS += -DUSDT_ENABLE
+endif
 
 OBJ_DIR = $(foreach dir, $(SRC_DIR), $(addprefix build/, $(dir)))
 
@@ -76,6 +82,7 @@ install:
 	cp $(TARGET) /usr/local/bin/
 
 .DEFAULT_GOAL := help
+
 
 help:
 	@echo ""

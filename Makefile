@@ -106,6 +106,9 @@ help:
 	@echo "   \033[1;37m make dpdk_enable=1 ebpf_enable=1 debug \033[0m    "
 	@echo "   \033[1;37m make dpdk_enable=1 ebpf_enable=1 release \033[0m  "
 	@echo ""
+	@echo "Compile with usdt(for tracing), can use command:"
+	@echo "   \033[1;37m make usdt_enable=1 debug \033[0m    "
+	@echo ""
 	@echo "How to clean, use command:"
 	@echo "   \033[1;37m make clean \033[0m                  : clean all compiled objects"
 	@echo ""
@@ -114,8 +117,8 @@ help:
 	@echo ""
 	@echo "Note: Please make clean before make if you have already complied before, "
 	@echo "For example, you can enter: \033[0;33m make clean; make release -j 8 \033[0m "
-	@echo ""
-	@echo ""
+	@echo "For example, you can enter: \033[0;33m make clean; make dpdk_enable=1 usdt_enable=1  debug -j 8 \033[0m "
+	@echo "\n\n"
 
 check:
 ifeq ($(dpdk_enable), 1)

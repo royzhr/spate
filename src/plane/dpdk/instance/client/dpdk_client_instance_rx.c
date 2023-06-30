@@ -6,9 +6,6 @@
 #include "dpdk_client_instance_rx.h"
 #include "../dpdk_instance_utils.h"
 
-#ifdef USDT_ENABLE
-#include <sys/sdt.h>
-#endif
 
 static inline int __dpdk_client_instance_process_mbuf(client_instance_context_t *ctx,
         struct rte_mbuf *mbuf, client_instance_rx_param_t *rxp)
@@ -17,10 +14,6 @@ static inline int __dpdk_client_instance_process_mbuf(client_instance_context_t 
     uint16_t                pkt_len;
 
     DPDK_PACKET_MBUF(pkt_data, pkt_len, mbuf);
-
-#ifdef USDT_ENABLE
-    DTRACE_PROBE2(spate, dpdk_rx, pkt_data, (uint64_t)pkt_len);
-#endif
 
     return ctx->fptr->on_recv_packet(ctx, pkt_data, pkt_len, rxp);
 }
